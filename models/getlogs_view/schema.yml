@@ -1,0 +1,27 @@
+
+version: 2
+
+sources:
+  - name: calabaza
+    database: telegram_bot
+    schema: calabaza_bot
+    description: related to the calabaza bot
+    tables:
+      - name: notes
+        description: >
+          log entries using the /log command. some may be without text.
+      - name: morning_check_in
+        description: >
+          data related to the morning check ins.
+      - name: secrets
+        description: >
+          similar to notes, except it's in a separate table and may be encrypted.
+
+models:
+    - name: getlogs_view_model
+      description: "A cleaned up source of /logs to chose from for /getlog"
+      columns:
+          - name: text
+            description: "The text associated with each entry."
+            tests:
+                - not_null
