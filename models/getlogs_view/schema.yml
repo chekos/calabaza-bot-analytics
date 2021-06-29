@@ -10,9 +10,6 @@ sources:
       - name: notes
         description: >
           log entries using the /log command. some may be without text.
-      - name: morning_check_in
-        description: >
-          data related to the morning check ins.
       - name: secrets
         description: >
           similar to notes, except it's in a separate table and may be encrypted.

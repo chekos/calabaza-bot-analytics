@@ -1,1 +1,0 @@
-{{ dbt_utils.unpivot(ref('morning_checkins'), exclude=['user_id','created_at_utc']) }}
