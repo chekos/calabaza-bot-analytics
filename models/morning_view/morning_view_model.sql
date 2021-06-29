@@ -5,22 +5,11 @@
 
 {{ config(materialized='view') }}
 
-with last_entry_of_the_day as (
-    select max(created_at_utc)
-    from {{ source('calabaza_mc', 'morning_check_in') }}
-    group by day(created_at_utc)
-),
+-- select * from {{ ref('stg_morning_view') }}
 
-morning_checkins as (
-    select
-        user_id,
-        sleep_hrs,
-        dreamed,
-        feel_right_now,
-        feel_about_today,
-        created_at_utc
-    from {{ source('calabaza_mc', 'morning_check_in') }}
-    where created_at_utc in (select * from last_entry_of_the_day)
-)
-
-select * from morning_checkins
+{{ dbt_utils.unpivot(
+  relation=ref('stg_morning_view'),
+  exclude=['user_id', 'created_at_pst', 'dreamed', 'sleep_hrs'],
+  field_name='feel',
+  value_name='value'
+) }}
