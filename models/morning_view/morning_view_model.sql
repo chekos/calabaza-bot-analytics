@@ -23,4 +23,4 @@ morning_checkins as (
     where created_at_utc in (select * from last_entry_of_the_day)
 )
 
-select * from morning_checkins;
+select * from morning_checkins
