@@ -38,3 +38,5 @@ models:
           materialized: view
       weekly_stats:
           materialized: view
+      morning_view_model:
+          materialized: view
